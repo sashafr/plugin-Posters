@@ -19,6 +19,8 @@ class Posters_ItemsController extends Omeka_Controller_AbstractActionController
             $this->_setParam('sort_field', 'added');
             $this->_setParam('sort_dir',   'd');
         }
+        
+        $this->view->posters = $this->_helper->db->findBy(array('user_id' => $this->_currentUser->id), 'Poster');
 
         //Must be logged in to view items specific to certain users
         /*if ($this->_getParam('user') && !$this->_helper->acl->isAllowed('browse', 'users')) {
@@ -28,6 +30,29 @@ class Posters_ItemsController extends Omeka_Controller_AbstractActionController
 
         parent::browseAction();
     }
+    
+    
+    /**
+     * Added by Sasha Renninger, Penn DS Team so user can
+     * add items to posters from the Item Show page
+     * Atm, this doesn't work, leaving it here while we 
+     * figure this out
+     */
+    public function showAction()
+    {
+        // get only your posters if you are logged in
+        if($this->_currentUser) {
+            $posters = $this->_helper->db->findBy(array('user_id' => $this->_currentUser->id), 'Poster');
+
+        } else {
+            $posters = $this->_helper->db->findBy(array(), 'Poster');
+        }
+        
+        $this->view->posters = "test worked";
+        //$this->view->posters = $posters;        
+        
+        parent::showAction();
+    }    
 
     public function addAction()
     {

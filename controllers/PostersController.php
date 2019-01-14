@@ -48,7 +48,16 @@ class Posters_PostersController extends Omeka_Controller_AbstractActionControlle
         //$this->_verifyAccess($poster,'edit');
         //retrieve public items 
         $items = $this->_helper->db->getTable()->findByUserId($this->_currentUser->id);
-        $this->view->assign(compact('poster','items'));
+        $params = $this->getRequest()->getParams();  
+        
+        if(isset($params['itemId'])){
+            $itemId = $params['itemId'];
+            $itemsToAdd = $this->_helper->db->getTable('Item')->find((int) $itemId);
+            $this->view->itemsToAdd = $itemsToAdd;
+        }
+        
+            $this->view->assign(compact('poster','items'));
+        
     }
     public function showAction() {
         $params = $this->getRequest()->getParams();

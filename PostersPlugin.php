@@ -33,6 +33,7 @@ class PostersPlugin extends Omeka_Plugin_AbstractPlugin
         'config_form',
         'define_acl',
         'define_routes',
+        'public_items_browse_each',
     );
     // Define Filters
     protected $_filters = array(
@@ -217,4 +218,29 @@ class PostersPlugin extends Omeka_Plugin_AbstractPlugin
        );
 
     }
+
+    /** 
+     * Added to place an add item to cart button on each
+     * item in the browse page
+     * 
+     * Sasha Renninger & Josh Berg, Penn DS Team, 2017
+     */
+    public function hookPublicItemsBrowseEach($args) {
+        if(current_user()){
+            $user = current_user();
+            $user_posters = get_records('Poster',array('user_id'=>$user->id));
+            
+            echo '<div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Add to Cart
+                    </button>
+                <ul class="dropdown-menu">';
+            foreach($user_posters as $poster) {
+                echo '<li><a class="dropdown-item" href="' . public_url(array('controller'=> get_option('poster_page_path'), 'action' => 'edit')) . "/" . $poster->id . '/?itemId=' . $args['item']->id . '">' . $poster->title . '</a></li>';
+            }
+            echo '</ul></div>';
+
+        }
+    }
+
 }
