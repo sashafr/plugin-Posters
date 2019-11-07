@@ -1,6 +1,6 @@
 <?php
 /**
- * Poster Builder 
+ * Poster Builder
  *
  * @copyright Copyright 2008-2013 Roy Rosenzweig Center for History and New Media
  * @license http://www.gnu.org/licenses/gpl-3.0.txt GNU GPLv3
@@ -24,8 +24,8 @@ class Posters_PostersController extends Omeka_Controller_AbstractActionControlle
     {
         $this->_helper->redirector('browse','index');
     }
-    
-    public function browseAction() 
+
+    public function browseAction()
     {
         //var_dump($this->_currentUser);
         // get only your posters if you are logged in
@@ -38,7 +38,7 @@ class Posters_PostersController extends Omeka_Controller_AbstractActionControlle
         $this->view->posters = $posters;
         $this->view->user = $this->_currentUser;
     }
-    
+
     public function editAction() {
         if(!$this->_currentUser){
             return $this->_helper->redirector->gotoUrl('/');
@@ -46,22 +46,37 @@ class Posters_PostersController extends Omeka_Controller_AbstractActionControlle
        //get the poster object
         $poster = $this->_helper->db->findById(null, 'Poster');
         //$this->_verifyAccess($poster,'edit');
-        //retrieve public items 
+        //retrieve public items
         $items = $this->_helper->db->getTable()->findByUserId($this->_currentUser->id);
-        $params = $this->getRequest()->getParams();  
-        
+        $params = $this->getRequest()->getParams();
+
+        if(isset($params['quickAdd'])) {
+
+            if(isset($params['itemId'])){
+                $itemId = $params['itemId'];
+                $itemsToAdd = $this->_helper->db->getTable('Item')->find((int) $itemId);
+                $this->view->itemsToAdd = $itemsToAdd;
+
+                $params['itemCount'] = 1;
+                $params['itemID-1'] = $itemId;
+                $poster->updateItems($params, null);
+                $poster->save();
+            }
+
+        }
+
         if(isset($params['itemId'])){
             $itemId = $params['itemId'];
             $itemsToAdd = $this->_helper->db->getTable('Item')->find((int) $itemId);
             $this->view->itemsToAdd = $itemsToAdd;
         }
-        
+
             $this->view->assign(compact('poster','items'));
-        
+
     }
     public function showAction() {
         $params = $this->getRequest()->getParams();
-        $poster = $this->_helper->db->findById(null, 'Poster');        
+        $poster = $this->_helper->db->findById(null, 'Poster');
         $this->view->currentUser = $this->_currentUser;
         $this->view->poster = $poster;
     }
@@ -76,11 +91,15 @@ class Posters_PostersController extends Omeka_Controller_AbstractActionControlle
         $poster->description = '';
         $poster->date_created = date('Y-m-d H:i:s', time());
         $poster->save();
-        
+
         //Set the new poster id for discard
         $_SESSION['new_poster_id'] = $poster->id;
-         
-         $bp = get_option('poster_page_path'); 
+        $params = $this->getRequest()->getParams();
+        if(isset($params['returnItemsBrowse'])) {
+            $_SESSION['returnItemsBrowse'] = 'true';
+        }
+
+         $bp = get_option('poster_page_path');
         $this->_helper->redirector->gotoRoute(
             array(
                 'controller' => 'posters',
@@ -118,18 +137,41 @@ class Posters_PostersController extends Omeka_Controller_AbstractActionControlle
 
         $poster->updateItems($params, $filter);
         $poster->save();
-        
-        $bp = get_option('poster_page_path');
-        $this->_helper->redirector->gotoRoute(
-                array(
-                    'controller' => 'posters',
-                    'module' => 'posters',
-                    'action' => 'browse'
-                ),
-                "$bp"
-            );
+
+        if(isset($_SESSION['returnItemsBrowse'])) {
+            $this->_helper->redirector->gotoUrl('/items/browse');
+        } else {
+
+            $bp = get_option('poster_page_path');
+            $this->_helper->redirector->gotoRoute(
+                    array(
+                        'controller' => 'posters',
+                        'module' => 'posters',
+                        'action' => 'browse'
+                    ),
+                    "$bp"
+                );
+        }
     }
-    
+
+    public function quicksaveAction() {
+        if(!$this->_currentUser){
+            return $this->_helper->redirector->gotoUrl('/');
+        }
+
+        //get the poster object
+        $poster = $this->_helper->db->findById(null, 'Poster');
+
+        $params = $this->getRequest()->getParams();
+        if(isset($params['itemId'])) {
+            $itemId = $params['itemId'];
+            $poster->addSingleItem($itemId);
+            $poster->save();
+        }
+
+        $this->_helper->redirector->gotoUrl('/items/browse');
+    }
+
     public function deleteAction()
     {
         if(!$this->_currentUser){
@@ -144,11 +186,11 @@ class Posters_PostersController extends Omeka_Controller_AbstractActionControlle
     public function helpAction(){
 
     }
-    
+
     public function discardAction()
     {
         if (isset($_SESSION['new_poster_id'])) {
-            // if the poster was just created and 
+            // if the poster was just created and
             // not yet saved by the edit  form,
             // then delete it.
             $poster = $this->_helper->db->findById($_SESSION['new_poster_id'], 'Poster');
@@ -159,23 +201,23 @@ class Posters_PostersController extends Omeka_Controller_AbstractActionControlle
             //Clear the new Poster id for discard
             unset($_SESSION['new_poster_id']);
         }
-        
+
         if(is_admin_theme()) {
             $this->_helper->redirector->gotoRoute(array('action' => 'browse'), 'default');
         } else {
             $this->_helper->redirector->gotoUrl('guest-user/user/me');
         }
-       
+
     }
 
-    
+
     protected function _verifyAccess($poster, $action)
     {
         /*
          * Blog access for users who didn't make the poster,
          * or people who don't have permission.
          */
-        if($poster->user_id != $this->_currentUser->id 
+        if($poster->user_id != $this->_currentUser->id
                 and !$this->_helper->acl->isAllowed($action. 'Any')) {
             throw new Omeka_Controller_Exception_403;
         }
@@ -194,7 +236,7 @@ class Posters_PostersController extends Omeka_Controller_AbstractActionControlle
         unset($_SESSION['new_poster_id']);
         $poster = $this->_helper->db->findById(null, 'Poster');
         $emailSent = false;
-       
+
         if($this->getRequest()->isPost()){
             $validator = new Zend_Validate_EmailAddress();
             $emailTo = $this->getRequest()->getPost('email_to');
@@ -224,7 +266,7 @@ class Posters_PostersController extends Omeka_Controller_AbstractActionControlle
         $poster = $this->_helper->db->findById(null, 'Poster');
 
         $this->view->poster = $poster;
- 
+
     }
 
 }

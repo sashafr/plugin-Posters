@@ -20,7 +20,7 @@ class Poster extends Omeka_Record_AbstractRecord
     public $date_modified;
 
     protected $_related = array(
-        'Items' => 'getItems', 
+        'Items' => 'getItems',
         'user' => 'getUser'
     );
 
@@ -40,7 +40,7 @@ class Poster extends Omeka_Record_AbstractRecord
     }
 
     public function updateItems(&$params, $filter)
-    { 
+    {
         if(is_numeric($params['itemCount'])) {
             $this->deletePosterItems();
             if($params['itemCount'] > 0) {
@@ -58,6 +58,14 @@ class Poster extends Omeka_Record_AbstractRecord
                 }
             }
         }
+    }
+
+    public function addSingleItem($itemId) {
+        $item = new PosterItems();
+        $item->poster_id = $this->id;
+        $item->item_id = $itemId;
+        $item->ordernum = count($this->getPosterItems($this->id)) + 1;
+        $item->save();
     }
 
     public function deletePosterItems()

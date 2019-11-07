@@ -232,15 +232,23 @@ class PostersPlugin extends Omeka_Plugin_AbstractPlugin
             $user = current_user();
             $user_posters = get_records('Poster',array('user_id'=>$user->id));
             $pageTitle = html_escape(get_option('poster_page_title'));
+            $marked = get_marked($args['item']->id, $user->id);
+
+            if (is_marked($args['item']->id, $user->id)){
+                foreach($marked as $mark) {
+                    echo '<p><a href="' . url(array('action'=>'edit','id' => $mark['poster_id']), get_option('poster_page_path')) . '">' . $mark['title'] . '</a></p>';
+                }
+            }
 
             echo '<div class="dropdown">
                     <button type="button" class="btn btn-default dropdown-toggle" id="dropdown-' . $args['item']->id. '" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Add to ' . $pageTitle . '
+                        <span class="ab-add-to-poster"></span>
                     </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdown-' . $args['item']->id. '">';
             foreach($user_posters as $poster) {
-                echo '<a class="dropdown-item" href="' . public_url(array('controller'=> get_option('poster_page_path'), 'action' => 'edit')) . "/" . $poster->id . '/?itemId=' . $args['item']->id . '">' . $poster->title . '</a>';
+                echo '<a class="dropdown-item" href="' . url(array('action'=>'quicksave', 'id'=>$poster->id, 'itemId' => $args['item']->id), get_option('poster_page_path')) . '">' . $poster->title . '</a>';
             }
+            echo '<a class="dropdown-item" href="' . url(array('controller'=> 'posters', 'action' => 'new'), get_option('poster_page_path')) . '/?returnItemsBrowse=true">--Create New--</a>';
             echo '</ul></div>';
 
         }
@@ -271,6 +279,8 @@ class PostersPlugin extends Omeka_Plugin_AbstractPlugin
         echo '<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>';
         echo '<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>';
         echo '<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>';
+
+        echo "<script>$(document).ready(function () { $('.dropdown-toggle').dropdown(); });</script>";
 
         echo '<style>.dropdown-menu{display: none; z-index: 1000; background-color: #fff; background-clip: padding-box; border: 1px solid rgba(0,0,0,.15); border-radius: .25rem; float: left; min-width: 10rem; padding: .5rem 0; margin: .125rem 0 0; text-align: left;}.dropdown-menu.show{display: block;}.dropdown-item{display: block; width:100%; clear: both; background-color: transparent; border: 0; padding: .25rem 1.5rem; margin: .125rem 0 0;}</style>';
     }
