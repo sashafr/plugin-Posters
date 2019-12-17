@@ -258,14 +258,25 @@ class PostersPlugin extends Omeka_Plugin_AbstractPlugin
         if(current_user()){
             $user = current_user();
             $user_posters = get_records('Poster',array('user_id'=>$user->id));
+            $pageTitle = html_escape(get_option('poster_page_title'));
+
+            $marked = get_marked($args['item']->id, $user->id);
+
+            echo '<h3>' . $pageTitle . '</h3>';
+
+            if (is_marked($args['item']->id, $user->id)){
+                foreach($marked as $mark) {
+                    echo '<p><a href="' . url(array('action'=>'edit','id' => $mark['poster_id']), get_option('poster_page_path')) . '">' . $mark['title'] . '</a></p>';
+                }
+            }
 
             echo '<div class="dropdown">
                     <button type="button" class="btn btn-default dropdown-toggle" id="dropdown-' . $args['item']->id. '" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Add to Poster
+                        Add to ' . $pageTitle . '
                     </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdown-' . $args['item']->id. '">';
             foreach($user_posters as $poster) {
-                echo '<a class="dropdown-item" href="' . url(get_option('poster_page_path')) . "/edit/" . $poster->id . '/?itemId=' . $args['item']->id . '">' . $poster->title . '</a>';
+                echo '<a class="dropdown-item" href="' . url(array('action'=>'quicksave', 'id'=>$poster->id, 'itemId' => $args['item']->id, 'itemShow' => 'true'), get_option('poster_page_path')) . '">' . $poster->title . '</a>';
             }
             echo '</ul></div>';
 

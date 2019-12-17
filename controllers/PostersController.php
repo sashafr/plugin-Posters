@@ -169,7 +169,11 @@ class Posters_PostersController extends Omeka_Controller_AbstractActionControlle
             $poster->save();
         }
 
-        $this->_helper->redirector->gotoUrl('/items/browse');
+        if(isset($params['itemShow'])) {
+            $this->_helper->redirector->gotoUrl('/items/show/' . $params['itemId']);
+        } else {
+            $this->_helper->redirector->gotoUrl('/items/browse');
+        }
     }
 
     public function deleteAction()
