@@ -10,7 +10,7 @@ Expands on the existing [Posters plugin](https://github.com/omeka/plugin-Posters
 
 Installing this plugin requires having a live Omeka Classic site to install it into.  More information on how to deploy an Omeka classic site can be found on our [github](https://github.com/upenndigitalscholarship/dsdocs/blob/master/omeka_install.md) or on the [Omeka installation guide](https://omeka.org/classic/docs/Installation/Installation/).
 
-Also requires [GuestUser plugin](https://github.com/omeka/plugin-GuestUser).
+Also requires [GuestUser plugin](https://github.com/omeka/plugin-GuestUser) and [CsvExport plugin](https://github.com/utlib/CsvExport).
 
 ### Installing
 
