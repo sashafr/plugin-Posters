@@ -95,20 +95,23 @@ class Posters_PostersController extends Omeka_Controller_AbstractActionControlle
         //Set the new poster id for discard
         $_SESSION['new_poster_id'] = $poster->id;
         $params = $this->getRequest()->getParams();
-        if(isset($params['returnItemsBrowse'])) {
+        if(isset($params['searchquery']) && $params['searchquery'] != '') {
             $_SESSION['returnItemsBrowse'] = 'true';
+            $_SESSION['searchquery'] = $params['searchquery'];
+        } else {
+            unset($_SESSION['returnItemsBrowse']);
+            unset($_SESSION['searchquery']);
         }
 
-         $bp = get_option('poster_page_path');
-        $this->_helper->redirector->gotoRoute(
-            array(
-                'controller' => 'posters',
-                'module' => 'posters',
-                'action' => 'edit',
-                'id'     => $poster->id
-            ),
-            "$bp"
-        );
+        $bp = get_option('poster_page_path');
+
+        if(isset($params['itemId'])) {
+            $newUrl = $bp . "/edit/" . $poster->id . "?quickAdd=true&itemId=" . $params['itemId'];
+        } else {
+            $newUrl = $bp . "/edit/" . $poster->id;
+        }
+
+        $this->_helper->redirector->gotoUrl($newUrl);
 
     }
     public function saveAction()
@@ -139,7 +142,7 @@ class Posters_PostersController extends Omeka_Controller_AbstractActionControlle
         $poster->save();
 
         if(isset($_SESSION['returnItemsBrowse'])) {
-            $this->_helper->redirector->gotoUrl('/items/browse');
+            $this->_helper->redirector->gotoUrl('/items/browse?' . $_SESSION['searchquery']);
         } else {
 
             $bp = get_option('poster_page_path');
@@ -172,7 +175,12 @@ class Posters_PostersController extends Omeka_Controller_AbstractActionControlle
         if(isset($params['itemShow'])) {
             $this->_helper->redirector->gotoUrl('/items/show/' . $params['itemId']);
         } else {
-            $this->_helper->redirector->gotoUrl('/items/browse');
+            $browseString = '/items/browse';
+            if(isset($params['searchquery']) && $params['searchquery'] != '') {
+                $browseString = $browseString . "?" . $params['searchquery'];
+            }
+
+            $this->_helper->redirector->gotoUrl($browseString);
         }
     }
 

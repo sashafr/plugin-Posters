@@ -246,9 +246,9 @@ class PostersPlugin extends Omeka_Plugin_AbstractPlugin
                     </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdown-' . $args['item']->id. '">';
             foreach($user_posters as $poster) {
-                echo '<a class="dropdown-item" href="' . url(array('action'=>'quicksave', 'id'=>$poster->id, 'itemId' => $args['item']->id), get_option('poster_page_path')) . '">' . $poster->title . '</a>';
+                echo '<a class="dropdown-item" href="' . url(array('action'=>'quicksave', 'id'=>$poster->id, 'itemId' => $args['item']->id), get_option('poster_page_path')) . '?searchquery=' . urlencode($_SERVER['QUERY_STRING']) . '">' . $poster->title . '</a>';
             }
-            echo '<a class="dropdown-item" href="' . url(array('controller'=> 'posters', 'action' => 'new'), get_option('poster_page_path')) . '/?returnItemsBrowse=true">--Create New--</a>';
+            echo '<a class="dropdown-item" href="' . url(array('controller'=> 'posters', 'action' => 'new'), get_option('poster_page_path')) . '?itemId=' . $args['item']->id . '&searchquery=' . urlencode($_SERVER['QUERY_STRING']) . '">--Create New--</a>';
             echo '</ul></div>';
 
         }
