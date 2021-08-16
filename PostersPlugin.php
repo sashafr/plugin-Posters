@@ -135,7 +135,7 @@ class PostersPlugin extends Omeka_Plugin_AbstractPlugin
     public function filterAdminNavigationMain($nav)
     {
         $nav[] = array(
-            'label'    => __('Posters'),
+            'label'    => __('Marked'),
             'uri'      => url('posters'),
            // 'resource' => 'edit',
         );
