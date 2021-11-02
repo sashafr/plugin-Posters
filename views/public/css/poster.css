@@ -80,7 +80,7 @@
     margin: 0;
     padding: 0;
 }
-    
+
 #poster legend {
     font-size: 21px;
     font-weight: normal;
@@ -88,10 +88,10 @@
     padding: 0;
 }
 
-#poster input, 
-#poster select, 
-#poster textarea, 
-#poster button, 
+#poster input,
+#poster select,
+#poster textarea,
+#poster button,
 #poster a.button {
     font-family: inherit;
     font-size: 100%;
@@ -100,8 +100,8 @@
 #poster input.color {
     font-family: monospace;
 }
-    
-#poster input[type=text], 
+
+#poster input[type=text],
 #poster input[type=password] {
     height: 30px;
     border: 1px solid #d8d8d8;
@@ -119,11 +119,11 @@
     margin: 0 0 10px 0;
     padding: 5px 10px;
 }
-    
+
     #poster input[type=text].big {
         padding: .375em;
     }
-        
+
     #poster input[type=text].small {
         padding: 0;
     }
@@ -131,7 +131,7 @@
 #poster .field {
     clear: both;
 }
-        
+
     #poster .field label {
         clear: left;
         font-weight: bold;
@@ -140,16 +140,16 @@
         margin: 0 0 10px 0;
         min-width: 120px;
     }
-        
+
     #poster .field select {
         width: 100%;
         margin-bottom: 10px;
     }
-    
+
 #poster .inputs {
     margin: 0 0 20px 0;
 }
-    
+
     .inputs .input-block {
         margin: 0 0 20px 0;
         float: left;
@@ -158,20 +158,20 @@
     .inputs select {
         margin-top: 0;
     }
-    
-    
+
+
     .inputs input[type=text], .inputs input[type=password], .inputs textarea {
         width: 100%;
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
         box-sizing: border-box;
     }
-        
+
     .inputs inputs a.button, .inputs input[type="submit"], .inputs button {
         margin-bottom: 10px;
     }
 
-    
+
     #poster .mce-tinymce button {
         background: none;
         margin: 0;
@@ -185,7 +185,7 @@
 #poster .required:after {
     content: "*";
 }
-    
+
 #poster textarea {
     width: 100%;
     border: 1px solid #d8d8d8;
@@ -202,10 +202,10 @@
     color: #666666;
     padding: 5px 10px;
 }
-            
-        /* Buttons 
+
+        /* Buttons
         ================================================== */
-            
+
         #additem-modal a.button, #additem-modal input[type=submit], #additem-modal button {
             background: #a4c637;
             background: -webkit-linear-gradient(top, #A4C637, #75940A);
@@ -222,7 +222,7 @@
             -webkit-box-sizing: border-box;
             -moz-box-sizing: border-box;
             box-sizing: border-box;
-            color: #ffffff;
+            color: #ffffff !important;
             cursor: pointer;
             display: inline-block;
             font-family: "Cabin", sans-serif;
@@ -230,24 +230,24 @@
             margin: 0 5px 20px 0;
             height: 26px;
             line-height: 26px;
-            padding: 0 10px;            
+            padding: 0 10px;
             text-align: center;
             text-shadow: -1px -1px 1px rgba(0,0,0,.5);
             white-space: normal;
         }
-        
-            #additem-modal a.button[disabled], 
-            #additem-modal input[type=submit][disabled], 
-            #additem-modal button[disabled] { 
+
+            #additem-modal a.button[disabled],
+            #additem-modal input[type=submit][disabled],
+            #additem-modal button[disabled] {
                 -moz-box-shadow: none !important;
                 -webkit-box-shadow: none !important;
                 box-shadow: none !important;
                 cursor: default;
-                opacity: .35; 
+                opacity: .35;
             }
-            
-        #additem-modal a.button.big, 
-        #additem-modal input[type=submit].big, 
+
+        #additem-modal a.button.big,
+        #additem-modal input[type=submit].big,
         #additem-modal button.big {
             display: block;
             line-height: 1.75em;
@@ -255,18 +255,18 @@
             margin: 10px auto;
             padding: .3125em;
         }
-            
-        #additem-modal a.button.small, 
-        #additem-modal input[type=submit].small, 
+
+        #additem-modal a.button.small,
+        #additem-modal input[type=submit].small,
         #additem-modal button.small {
             height: 23px;
             display: inline-block;
             margin: 0 5px 20px 0;
             padding: 3px 10px;
         }
-            
-        #additem-modal a.button.blue, 
-        #additem-modal input[type=submit].blue, 
+
+        #additem-modal a.button.blue,
+        #additem-modal input[type=submit].blue,
         #additem-modal button.blue {
             background: #22546b;
             background: -webkit-linear-gradient(top, #22546b, #102d3b);
@@ -278,9 +278,9 @@
             box-shadow: 0px 1px 0px 0px #526c80 inset, 0px -1px 0px 0px #142233 inset, 0px 2px 2px 0px #d4d4d4;
             border: 1px solid #11303F;
         }
-            
-        #additem-modal a.button.red, 
-        #additem-modal input[type=submit].red, 
+
+        #additem-modal a.button.red,
+        #additem-modal input[type=submit].red,
         #additem-modal button.red {
             background: #ad6345;
             background: -webkit-linear-gradient(top, #ad6345, #7d422a);
@@ -292,9 +292,9 @@
             box-shadow: 0px 1px 0px 0px #b87979 inset, 0px -1px 0px 0px #5e3030 inset, 0px 2px 2px 0px #d4d4d4;
             border: 1px solid #7E432C;
         }
-            
-        #additem-modal a.button.green, 
-        #additem-modal input[type=submit].green, 
+
+        #additem-modal a.button.green,
+        #additem-modal input[type=submit].green,
         #additem-modal button.green {
             background: #A4C637;
             background: -webkit-linear-gradient(top, #A4C637, #75940A);
@@ -306,59 +306,59 @@
             box-shadow: 0px 1px 0px 0px #bdd662 inset, 0px -1px 0px 0px #6a821a inset, 0px 2px 2px 0px #d4d4d4;
             border: 1px solid #749308;
         }
-        
-        #additem-modal button:active, 
-        #additem-modal input[type=submit]:active, 
+
+        #additem-modal button:active,
+        #additem-modal input[type=submit]:active,
         #additem-modal a.button:active  {
             -moz-box-shadow: 0px 1px 1px 0px #D4D4D4 !important;
             -webkit-box-shadow: 0px 1px 1px 0px #D4D4D4 !important;
             box-shadow: 0px 1px 1px 0px #D4D4D4 !important;
             color: #E7E7E7 !important;
         }
-        
-        #additem-modal button:hover, 
-        #additem-modal input[type=submit]:hover, 
-        #additem-modal a.button:hover, 
+
+        #additem-modal button:hover,
+        #additem-modal input[type=submit]:hover,
+        #additem-modal a.button:hover,
         #additem-modal .green:hover {
             -moz-box-shadow: 0px 1px 0px 0px #BDD662 inset, 0px -1px 0px 0px #6A821A inset, 0px 0px 10px 0px #A4C637, 0px 2px 2px 0px #D4D4D4;
             -webkit-box-shadow: 0px 1px 0px 0px #BDD662 inset, 0px -1px 0px 0px #6A821A inset, 0px 0px 10px 0px #A4C637, 0px 2px 2px 0px #D4D4D4;
             box-shadow: 0px 1px 0px 0px #BDD662 inset, 0px -1px 0px 0px #6A821A inset, 0px 0px 10px 0px #A4C637, 0px 2px 2px 0px #D4D4D4;
             color: #fff;
         }
-        
-        #additem-modal button.blue:hover, 
-        #additem-modal input[type=submit].blue:hover, 
+
+        #additem-modal button.blue:hover,
+        #additem-modal input[type=submit].blue:hover,
         #additem-modal a.button.blue:hover {
             -moz-box-shadow: 0px 1px 0px 0px #526c80 inset, 0px -1px 0px 0px #142233 inset, 0px 0px 10px 0px #102d3b, 0px 2px 2px 0px #d4d4d4;
             -webkit-box-shadow: 0px 1px 0px 0px #526c80 inset, 0px -1px 0px 0px #142233 inset, 0px 0px 10px 0px #102d3b, 0px 2px 2px 0px #d4d4d4;
             box-shadow: 0px 1px 0px 0px #526c80 inset, 0px -1px 0px 0px #142233 inset, 0px 0px 10px 0px #102d3b, 0px 2px 2px 0px #d4d4d4;
         }
-        
-        #additem-modal button.red:hover, 
-        #additem-modal input[type=submit].red:hover, 
+
+        #additem-modal button.red:hover,
+        #additem-modal input[type=submit].red:hover,
         #additem-modal a.button.red:hover {
             -moz-box-shadow: 0px 1px 0px 0px #b87979 inset, 0px -1px 0px 0px #5e3030 inset, 0px 0px 10px 0px #7d422a, 0px 2px 2px 0px #d4d4d4;
             -webkit-box-shadow: 0px 1px 0px 0px #b87979 inset, 0px -1px 0px 0px #5e3030 inset, 0px 0px 10px 0px #7d422a, 0px 2px 2px 0px #d4d4d4;
-            box-shadow: 0px 1px 0px 0px #b87979 inset, 0px -1px 0px 0px #5e3030 inset, 0px 0px 10px 0px #7d422a, 0px 2px 2px 0px #d4d4d4;        
+            box-shadow: 0px 1px 0px 0px #b87979 inset, 0px -1px 0px 0px #5e3030 inset, 0px 0px 10px 0px #7d422a, 0px 2px 2px 0px #d4d4d4;
         }
-        
+
         /* Pagination
         ================================================== */
-        
+
         #additem-modal .pagination-nav {
             clear: none;
         }
-        
+
         #additem-modal .pagination {
             clear: right;
             float: right;
         }
-            
+
             #additem-modal .pagination {
                 margin: 0 0 20px 0;
                 padding: 0;
             }
-            
+
             #additem-modal .pagination li {
                 height: 26px;
                 min-width: 26px;
@@ -370,11 +370,11 @@
                 text-align: center;
                 background-color: transparent;
             }
-                
+
                 #additem-modal .pagination li:last-child {
                     margin-right: 0;
                 }
-                    
+
                 #additem-modal .pagination li a {
                     height: 100%;
                     background: #f8f8f8;
@@ -392,7 +392,7 @@
                     display: block;
                     padding: 3px 7px;
                 }
-                
+
                 #additem-modal .pagination_next a,
                 #additem-modal .pagination_previous a {
                     text-indent: -9999px;
@@ -400,7 +400,7 @@
                     height: 24px;
                     width: 24px;
                 }
-                
+
                 #additem-modal .pagination_next a:after,
                 #additem-modal .pagination_previous a:after {
                     font-family: "FontAwesome";
@@ -411,38 +411,36 @@
                     width: 24px;
                     text-align: center;
                 }
-                
+
                 #additem-modal .pagination_next a:after {
-                    text-indent: 0;
-                    content: "\f105";
+                    content: url(../images/right-arrow.png);
                 }
-                
+
                 #additem-modal .pagination_previous a:after {
-                    text-indent: -3px;
-                    content: "\f104";
+                    content: url(../images/left-arrow.png);
                 }
-                
+
                 #additem-modal .pagination_next { margin: 0 0 0 10px; }
-        
+
                 #additem-modal .pagination_previous { margin: 0 10px 0 0; }
-            
+
             #additem-modal .pagination form {
                 padding: 0;
             }
-            
+
             #additem-modal .field {
                 margin-bottom: 1.5em;
             }
-            
+
             #additem-modal label,
             #additem-modal .label {
                 margin-bottom: 0;
             }
-            
+
             #additem-modal button.add_search {
                 margin-top: .75em;
             }
-            
+
             #additem-modal input[type="text"] {
                 height: 26px;
                 line-height: 26px;
@@ -459,16 +457,16 @@
                 padding: 0 5px;
                 margin-bottom: 0;
             }
-            
+
             #additem-modal .pagination .page-input input[type=text] {
                 width: 40px;
                 margin: 0 5px 0 0;
                 text-align: center;
             }
 
-        /* jQuery UI overrides 
+        /* jQuery UI overrides
         ================================================== */
-        
+
         button.ui-state-default {
             background: #A4C637;
             background: -webkit-linear-gradient(top, #A4C637, #75940A) !important;
@@ -481,7 +479,7 @@
             -moz-border-radius: 0 !important;
             border-radius: 0 !important;
         }
-        
+
         button.ui-dialog-titlebar-close {
             top: 40% !important;
             -webkit-box-shadow: none;
@@ -490,11 +488,17 @@
             border: 0 !important;
             background-image: none !important;
             background-color: transparent !important;
+            cursor: pointer;
         }
-        
-    /* Checkboxes 
+
+        button.ui-dialog-titlebar-close:after {
+            content: url(../images/remove.png);
+        }
+
+
+    /* Checkboxes
     ================================================== */
-    
+
     #poster input[type="checkbox"] {
         margin: 0;
     }
@@ -502,21 +506,21 @@
 
     /* Alerts
     ================================================== */
-    
+
     #content #flash ul {
         list-style-type: none;
         margin-top: 0;
         padding: 0;
     }
-    
+
         ul.error {
             list-style-type: none;
             margin-top: 20px;
             padding: 0;
         }
-        
+
             .inputs ul.error { margin-top: 0; }
-        
+
         #content #flash li, ul.error li, #im-result, .flash {
             background-color: rgba(255, 255, 255, .5);
             border: 1px solid #E7E7E7;
@@ -524,26 +528,26 @@
             -moz-border-radius: 3px;
             border-radius: 3px;
             margin-bottom: 20px;
-            padding: .5em;            
+            padding: .5em;
         }
-        
+
             #im-result:empty { display: none; }
-            
+
     li .flash {
         display: block;
         margin: 10px 0 10px -.5em;
     }
-    
+
     .success {
         color: #729108;
     }
-        
+
     .error, .alert {
         color: #914E33;
     }
 
 /* Item select */
-    
+
 #poster-additem {
     margin-top: 10px;
 }
@@ -762,10 +766,12 @@
 
 #additem-modal {
     padding: 10px 5px 40px;
+    background-color: white;
 }
 
 #additem-modal h4 {
     color: #4C3939;
+    font-size: 14px;
 }
 
 #change-selected-item:before {
@@ -783,7 +789,7 @@
     display: block;
 }
 
-.direction { 
+.direction {
     clear: both;
     font-weight: bold;
     margin: 0;
@@ -872,8 +878,8 @@
     float: left;
 }
 
-.block-form h4 { 
-    clear: both; 
+.block-form h4 {
+    clear: both;
     margin-bottom: 10px;
 }
 
@@ -901,7 +907,7 @@
 }
 
 .add-block {
-    text-align: center; 
+    text-align: center;
     clear: both;
 }
 
@@ -934,7 +940,7 @@
 }
 
 .block-form h2 {
-    border-width: 1px 0;  
+    border-width: 1px 0;
 }
 
 .layout-select {
@@ -1034,7 +1040,7 @@ div.selected-items {
     font-family: "Cabin", sans-serif;
     font-weight: normal;
     margin: 0;
-    line-height: 20px; 
+    line-height: 20px;
     font-size: 14px;
     height: 82px;
     overflow: hidden;
@@ -1238,7 +1244,7 @@ input[type=submit].configure-button {
   margin-top: -15px;
   margin-left: -15px;
   border: 3px solid #A28E8A;
-  border-radius: 50%; 
+  border-radius: 50%;
 }
 
 .loading .spinner::before, .loading .spinner::after {
@@ -1247,7 +1253,7 @@ input[type=submit].configure-button {
     display: block;
     width: 3px;
     background-color: #A28E8A;
-    border-radius: 1.5px; 
+    border-radius: 1.5px;
 }
 
 .loading .spinner::before {
@@ -1259,7 +1265,7 @@ input[type=submit].configure-button {
     animation: spin 2000ms linear infinite;
     -webkit-transform-origin: 50% 0%;
     -moz-transform-origin: 50% 0%;
-    transform-origin: 50% 0%; 
+    transform-origin: 50% 0%;
 }
 
 .loading .spinner::after {
@@ -1271,12 +1277,12 @@ input[type=submit].configure-button {
     animation: spin 500ms linear infinite;
     -webkit-transform-origin: 50% 0%;
     -moz-transform-origin: 50% 0%;
-    transform-origin: 50% 0%; 
+    transform-origin: 50% 0%;
 }
 
 /* Browse Posters */
 
-.posters td, 
+.posters td,
 .posters th {
     vertical-align: top;
 }
@@ -1306,7 +1312,7 @@ ul.poster-actions {
 }
 
 ul.poster-actions {
-    margin-bottom: 0; 
+    margin-bottom: 0;
 }
 
 ul.poster-actions li {
@@ -1441,7 +1447,7 @@ ul .poster-items-max {
 }
 
 ul.poster-items-grid {
-    list-style-type:none; 
+    list-style-type:none;
     padding: 0;
 }
 

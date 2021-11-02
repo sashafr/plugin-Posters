@@ -3,8 +3,8 @@ echo pagination_links(
     array(
         'url' => url(
             array(
-                'controller' => 'Item', 
-                'action' => 'items', 
+                'controller' => 'Item',
+                'action' => 'items',
                 'page' => null
             )
         )
@@ -22,7 +22,7 @@ echo pagination_links(
     <?php endforeach; ?>
 </div>
 
-<?php 
+<?php
 function posterItemListing($item){
     $html = '<div class="item-listing" data-item-id="'. $item->id .'">';
     if (metadata($item, 'has files')) {
@@ -37,7 +37,7 @@ function posterItemListing($item){
     }
 
     $html .= '<h4 class="title">'
-          . metadata($item, array('Dublin Core', 'Title'))
+          . metadata('item', 'citation', array('no_escape' => true))
           . '</h4>'
           . '<button type="button" class="select-item" >' . __('Select Item').'</button>'
           . '</div>';
