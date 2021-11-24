@@ -37,8 +37,20 @@ function posterItemListing($item){
     }
 
     $html .= '<h4 class="title">'
-          . metadata('item', 'citation', array('no_escape' => true))
-          . '</h4>'
+          . metadata('item', array('Dublin Core', 'Creator'))
+          . ', '
+          . metadata('item', array('Dublin Core', 'Date'))
+          . '. '
+          . metadata('item', array('Dublin Core', 'Title'));
+
+    if(metadata('item', array('Dublin Core', 'Source')) != '') {
+        $html .= ', '
+          . metadata('item', array('Dublin Core', 'Source'))
+          . '.';
+    } else {
+        $html .= '.';
+    }
+          $html .= '</h4>'
           . '<button type="button" class="select-item" >' . __('Select Item').'</button>'
           . '</div>';
 
