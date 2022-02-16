@@ -145,12 +145,12 @@ class PostersPlugin extends Omeka_Plugin_AbstractPlugin
     public function filterGuestUserWidgets($widgets)
     {
         $bp = get_option('poster_page_path');
-        $widget = array('label' => __('Posters'));
+        $widget = array('label' => __('My Lists'));
         $browse = url("{$bp}/browse");
         $create = url("{$bp}/new");
         $html = "<ul>"
-              . "<li><a href='{$browse}'>".__("Browse Posters")."</a></li>"
-              . "<li><a href='{$create}'>".__("New Poster")."</a></li>"
+              . "<li><a href='{$browse}'>".__("Browse My Lists")."</a></li>"
+              . "<li><a href='{$create}'>".__("New List")."</a></li>"
               . "</ul>";
         $widget['content'] = $html;
         $widgets[] = $widget;
@@ -242,7 +242,7 @@ class PostersPlugin extends Omeka_Plugin_AbstractPlugin
 
             echo '<div class="dropdown">
                     <button type="button" class="btn btn-default dropdown-toggle" id="dropdown-' . $args['item']->id. '" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="ab-add-to-poster"></span>
+                        <span class="ab-add-to-poster">Select List</span>
                     </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdown-' . $args['item']->id. '">';
             foreach($user_posters as $poster) {

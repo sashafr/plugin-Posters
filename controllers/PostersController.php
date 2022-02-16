@@ -217,7 +217,7 @@ class Posters_PostersController extends Omeka_Controller_AbstractActionControlle
         if(is_admin_theme()) {
             $this->_helper->redirector->gotoRoute(array('action' => 'browse'), 'default');
         } else {
-            $this->_helper->redirector->gotoUrl('guest-user/user/me');
+            $this->_helper->redirector->gotoUrl(get_option('poster_page_path').'/browse');
         }
 
     }
